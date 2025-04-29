@@ -16,6 +16,7 @@ beforeAll(() => {
     body: {
       email: 'demo',
       password: 'demo',
+      username: 'demo001'
     },
   })
     .expect('status', 200)
