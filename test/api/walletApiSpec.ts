@@ -36,6 +36,7 @@ describe('/api/Wallets', () => {
       body: {
         email: 'demo1',
         password: 'demo1',
+        username: 'demo001'
       }
     })
       .expect('status', 200)
