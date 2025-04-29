@@ -15,8 +15,8 @@ beforeAll(() => {
     headers: jsonHeader,
     body: {
       email: 'demo',
-      password: 'demo'
-    }
+      password: 'demo',
+    },
   })
     .expect('status', 200)
     .then(({ json }) => {
@@ -32,7 +32,11 @@ describe('/api/Wallets', () => {
 
   it('GET wallet retrieves wallet amount of requesting user', () => {
     return frisby.get(`${REST_URL}/wallet/balance`, {
-      headers: authHeader
+      headers: authHeader,
+      body: {
+        email: 'demo1',
+        password: 'demo1',
+      }
     })
       .expect('status', 200)
       .expect('header', 'content-type', /application\/json/)
@@ -44,7 +48,9 @@ describe('/api/Wallets', () => {
   it('PUT wallet is forbidden via public API', () => {
     return frisby.put(`${REST_URL}/wallet/balance`, {
       body: {
-        balance: 10
+        balance: 10,
+        email: 'demo2',
+        password: 'demo3',
       }
     })
       .expect('status', 401)
@@ -55,7 +61,9 @@ describe('/api/Wallets', () => {
       headers: authHeader,
       body: {
         balance: 10,
-        paymentId: 2
+        paymentId: 2,
+        email: 'demo3',
+        password: 'demo3',
       }
     })
       .expect('status', 200)
